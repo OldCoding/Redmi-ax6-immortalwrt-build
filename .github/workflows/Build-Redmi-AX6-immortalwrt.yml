@@ -23,7 +23,7 @@ on:
     
 env:
   REPO_URL: https://github.com/VIKINGYFY/immortalwrt
-  REPO_BRANCH: master
+  REPO_BRANCH: main
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
