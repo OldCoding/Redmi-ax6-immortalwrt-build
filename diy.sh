@@ -15,8 +15,8 @@ svn_export() {
 find ./ | grep Makefile | grep v2ray-geodata | xargs rm -f
 find ./ | grep Makefile | grep mosdns | xargs rm -f
 
-rm -rf ./feeds/packages/lang/golang 
-git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
+#rm -rf ./feeds/packages/lang/golang 
+#git clone https://github.com/sbwml/packages_lang_golang feeds/packages/lang/golang
 rm -rf ./feeds/luci/applications/luci-app-adguardhome
 rm -rf ./feeds/luci/applications/luci-app-passwall
 rm -rf ./feeds/luci/applications/luci-app-filebrowser
@@ -45,6 +45,8 @@ svn_export "main" "easytier" "package/easytier" "https://github.com/EasyTier/luc
 svn_export "main" "luci-app-easytier" "package/luci-app-easytier" "https://github.com/EasyTier/luci-app-easytier"
 
 mv ./package/adguardhome/* ./package/ && rm -rf ./package/adguardhome
+
+sed -i 's/7a0154d2de18373e52783d1b64cf5204471049c2d2c64f0b3323d7f430aa4275/da5af052265fbfba7a11ee4195257f9bc13f44d054d8fdcbace0639360870035/g' package/helloworld/simple-obfs/Makefile
 
 # turboacc 补丁
 #curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
