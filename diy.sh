@@ -47,7 +47,7 @@ svn_export "main" "luci-app-easytier" "package/luci-app-easytier" "https://githu
 mv ./package/adguardhome/* ./package/ && rm -rf ./package/adguardhome
 
 # turboacc 补丁
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
 # 安装插件
 ./scripts/feeds update -i
