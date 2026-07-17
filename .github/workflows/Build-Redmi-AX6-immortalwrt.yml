@@ -22,8 +22,8 @@ on:
     types: [started]
     
 env:
-  REPO_URL: https://github.com/VIKINGYFY/immortalwrt
-  REPO_BRANCH: main
+  REPO_URL: https://github.com/immortalwrt/immortalwrt
+  REPO_BRANCH: master
   UPLOAD_BIN_DIR: true
   UPLOAD_FIRMWARE: true
   UPLOAD_RELEASE: true
@@ -121,7 +121,7 @@ jobs:
         cat >> .config <<EOF
         CONFIG_TARGET_qualcommax=y
         CONFIG_TARGET_qualcommax_ipq807x=y
-        CONFIG_TARGET_qualcommax_ipq807x_DEVICE_redmi_ax6=y
+        CONFIG_TARGET_qualcommax_ipq807x_DEVICE_redmi_ax6-stock=y
         EOF
 
         # IPv6支持:
@@ -137,12 +137,10 @@ jobs:
 
         # LuCI插件选择:
         cat >> .config <<EOF
-        CONFIG_PACKAGE_luci-app-adguardhome=y
         CONFIG_PACKAGE_luci-app-autoreboot=y
         CONFIG_PACKAGE_luci-app-ddns=y
         CONFIG_PACKAGE_easytier=y
         CONFIG_PACKAGE_luci-app-easytier=y
-        CONFIG_PACKAGE_luci-app-filebrowser=y
         CONFIG_PACKAGE_luci-app-firewall=y
         CONFIG_PACKAGE_luci-app-ssr-plus=y
         CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Xray=y
@@ -155,11 +153,6 @@ jobs:
         CONFIG_PACKAGE_luci-app-turboacc=y
         CONFIG_PACKAGE_luci-app-ttyd=y
         CONFIG_PACKAGE_luci-app-openlist2=y
-        CONFIG_PACKAGE_luci-app-passwall=y
-        CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Client=y
-        CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Rust_Server=y
-        # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Client is not set
-        # CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks_Libev_Server is not set
         CONFIG_PACKAGE_luci-app-watchcat=y
         CONFIG_PACKAGE_luci-app-webadmin=y
         CONFIG_PACKAGE_luci-app-upnp=y

@@ -30,14 +30,10 @@ curl -sfL https://github.com/sbwml/openwrt_helloworld/raw/refs/heads/v5/shadowso
 
 git clone --depth 1 https://github.com/jerrykuku/luci-theme-argon package/luci-theme-argon
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
-git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/openwrt-passwall-packages
 git clone --depth 1 https://github.com/fw876/helloworld package/helloworld
 git clone --depth 1 https://github.com/sbwml/luci-app-openlist2 package/luci-app-openlist2
-git clone --depth 1 https://github.com/OldCoding/luci-app-adguardhome package/adguardhome
-git clone --depth 1 https://github.com/OldCoding/luci-app-filebrowser package/luci-app-filebrowser
 #git clone --depth 1 https://github.com/hudra0/luci-app-qosmate package/luci-app-qosmate
 #git clone --depth 1 https://github.com/hudra0/qosmate package/qosmate
-svn_export "main" "luci-app-passwall" "package/luci-app-passwall" "https://github.com/Openwrt-Passwall/openwrt-passwall"
 svn_export "v5" "luci-app-mosdns" "package/luci-app-mosdns" "https://github.com/sbwml/luci-app-mosdns"
 svn_export "v5" "mosdns" "package/mosdns" "https://github.com/sbwml/luci-app-mosdns"
 svn_export "v5" "v2dat" "package/v2dat" "https://github.com/sbwml/luci-app-mosdns"
@@ -49,7 +45,7 @@ mv ./package/adguardhome/* ./package/ && rm -rf ./package/adguardhome
 sed -i 's/7a0154d2de18373e52783d1b64cf5204471049c2d2c64f0b3323d7f430aa4275/da5af052265fbfba7a11ee4195257f9bc13f44d054d8fdcbace0639360870035/g' package/helloworld/simple-obfs/Makefile
 
 # turboacc 补丁
-#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
 # 安装插件
 ./scripts/feeds update -i
@@ -68,16 +64,3 @@ cd package
 # 汉化
 curl -sfL -o ./convert_translation.sh https://github.com/kenzok8/small-package/raw/main/.github/diy/convert_translation.sh
 chmod +x ./convert_translation.sh && bash -v ./convert_translation.sh
-# 更新passwall规则
-curl -sfL -o ./luci-app-passwall/root/usr/share/passwall/rules/gfwlist https://raw.githubusercontent.com/Loyalsoldier/v2ray-rules-dat/release/gfw.txt
-
-# AdguardHome核心
-mkdir ./luci-app-adguardhome/root/usr/bin & cd ./luci-app-adguardhome/root/usr/bin
-ADG_VER=$(curl -sfL https://api.github.com/repos/AdguardTeam/AdGuardHome/releases/latest 2>/dev/null | grep 'tag_name' | egrep -o "v[0-9].+[0-9.]" | awk 'NR==1')
-curl -sfL -o /tmp/AdGuardHome_linux.tar.gz https://github.com/AdguardTeam/AdGuardHome/releases/download/${ADG_VER}/AdGuardHome_linux_mipsle_softfloat.tar.gz
-tar -zxf /tmp/*.tar.gz -C /tmp/ && chmod +x /tmp/AdGuardHome/AdGuardHome
-#upx_latest_ver="$(curl -sfL https://api.github.com/repos/upx/upx/releases/latest 2>/dev/null | egrep 'tag_name' | egrep '[0-9.]+' -o 2>/dev/null)"
-curl -sfL -o /tmp/upx-4.2.4-amd64_linux.tar.xz "https://github.com/upx/upx/releases/download/v4.2.4/upx-4.2.4-amd64_linux.tar.xz"
-xz -d -c /tmp/upx-4.2.4-amd64_linux.tar.xz | tar -x -C "/tmp"
-/tmp/upx-4.2.4-amd64_linux/upx --ultra-brute /tmp/AdGuardHome/AdGuardHome > /dev/null 2>&1
-mv /tmp/AdGuardHome/AdGuardHome ./ && rm -rf /tmp/AdGuardHome
