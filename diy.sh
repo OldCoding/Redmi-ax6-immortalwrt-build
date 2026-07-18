@@ -46,8 +46,8 @@ mv ./package/adguardhome/* ./package/ && rm -rf ./package/adguardhome
 sed -i 's/7a0154d2de18373e52783d1b64cf5204471049c2d2c64f0b3323d7f430aa4275/da5af052265fbfba7a11ee4195257f9bc13f44d054d8fdcbace0639360870035/g' package/helloworld/simple-obfs/Makefile
 
 # turboacc 补丁
-curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
-sed -i 's/659fa82a431e15af797a6c7069faeee02810453ad8b576c51c29f95a1761a045/0a73db82801fc0406a5bb7ff36e7e1b03f6550797b1aca0e8ea0cec3af465d2b/g' package/turboacc/shortcut-fe/simulated-driver/Makefile
+curl -sSL https://raw.githubusercontent.com/mufeng05/turboacc/main/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
+#curl -sSL https://raw.githubusercontent.com/chenmozhijin/turboacc/luci/add_turboacc.sh -o add_turboacc.sh && bash add_turboacc.sh
 
 # 安装插件
 ./scripts/feeds update -i
